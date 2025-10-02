@@ -80,7 +80,7 @@ fig, axes = make_axes_grid("Scripps Pier SST — Time Series",
 for i, y in enumerate(years):
     ax = axes[i]
     s = year_series[y]
-    s.plot(ax=ax, lw=0.8)
+    s.plot(ax=ax, lw=0.8, color=('#9fc5e8'))
     ax.set_title(str(y), fontsize=TITLE_FONTSIZE)
     ax.set_xlabel("Date", fontsize=LABEL_FONTSIZE)
     ax.set_ylabel("Temp (°C)", fontsize=LABEL_FONTSIZE)
@@ -105,17 +105,17 @@ edges = np.arange(np.floor(p1), np.ceil(p99) + dbin, dbin)
 centers = (edges[:-1] + edges[1:]) / 2
 
 #pdf figure 
-fig, axes = make_axes_grid("Scripps Pier SST — PDFs (density=True, common bins)",
+fig, axes = make_axes_grid("Scripps Pier SST PDF 2005-2021",
                            sharex=False, sharey=False)
 
 for i, y in enumerate(years):
     ax = axes[i]
     vals = year_series[y].values
     pdf_vals, _ = np.histogram(vals, bins=edges, density=True)
-    ax.plot(centers, pdf_vals)
+    ax.plot(centers, pdf_vals, color=('#b4a7d6'))
     ax.set_title(str(y), fontsize=TITLE_FONTSIZE)
     ax.set_xlabel("Temp (°C)", fontsize=LABEL_FONTSIZE)
-    ax.set_ylabel("PDF", fontsize=LABEL_FONTSIZE)
+    ax.set_ylabel("Probability Density", fontsize=LABEL_FONTSIZE)
     ax.grid(True, alpha=0.3)
     ax.tick_params(labelsize=8)
 plt.tight_layout(rect=[0, 0, 1, 0.95], pad=1.5, w_pad=1.0, h_pad=1.0)

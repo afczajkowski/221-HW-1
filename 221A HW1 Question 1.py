@@ -34,7 +34,7 @@ da_greg = da.convert_calendar("proleptic_gregorian")
 #converting into pandas because i prefer to plot with pandas, cleaner for labeling purposes  
 df = da_greg.to_pandas()           
 
-ax = df.plot(figsize=(10, 10), color='#f04ef2')
+ax = df.plot(figsize=(10, 8), color='#9fc5e8')
 ax.set_title("Scripps Pier SST 2021")
 ax.set_xlabel("Date")
 ax.set_ylabel("Temperature (C)")
@@ -52,12 +52,12 @@ print(f"Std Dev SST (2021): {std_temp:.2f} °C")
 
 #figure for PDF 
 fig, [ax1, ax2] = plt.subplots(1, 2, figsize = (16, 8))
-hist = ax1.hist(df, bins=30, density=False)
+hist = ax1.hist(df, bins=30, color = ('#ae4aaf'), density=False)
 ax1.set_ylabel('Counts', fontsize=14)
 ax1.set_xlabel('Temperature (C)', fontsize=14)
 ax1.set_title('Histogram', fontsize=18)
 # Now, with density=True
-pdf = ax2.hist(df, bins=30, density=True)
+pdf = ax2.hist(df, bins=30, color = ('#b4a7d6'), density=True)
 ax2.set_ylabel('Probability density', fontsize=14)
 ax2.set_xlabel('Temperature (C)', fontsize=14)
 ax2.set_title('PDF', fontsize=18)
@@ -92,9 +92,9 @@ pdf, edges = np.histogram(x, bins=edges, density=True)
 centers = (edges[:-1] + edges[1:]) / 2
 
 plt.figure(figsize=(8, 6))
-plt.plot(centers, pdf)
+plt.plot(centers, pdf, color=('#b4a7d6'))
 plt.xlabel('Temperature (°C)', fontsize=14)
-plt.ylabel('PDF', fontsize=14)
+plt.ylabel('Probability Density', fontsize=14)
 plt.title('SST 2021 PDF')
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
